@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f6"><title>A Little Surprise for You 💗</title>
+<style>
+:root{--pink:#ef5b91;--dark:#8c2854;--light:#fff0f6;--ink:#573146}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:linear-gradient(140deg,#fff2f8,#ffe2ee,#fff8e9);color:var(--ink);min-height:100dvh;overflow-x:hidden}main{max-width:580px;margin:auto;min-height:100dvh;display:grid;place-items:center;padding:28px 18px}.panel{width:100%;background:#ffffffd9;border:1px solid #fff;border-radius:28px;padding:30px 22px;text-align:center;box-shadow:0 18px 60px #c7427a22;position:relative;z-index:1}.screen{display:none}.screen.active{display:block;animation:appear .45s ease}@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}h1{font-size:clamp(1.8rem,7vw,2.6rem);color:var(--dark);line-height:1.18;margin:12px 0}h2{font-size:1.65rem;color:var(--dark)}p{line-height:1.65}.eyebrow{letter-spacing:.15em;text-transform:uppercase;color:#b9507b;font-size:.75rem;font-weight:700}.mascot{font-size:5rem;display:block;animation:bob 2.5s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-8px) rotate(-5deg)}}button{font:inherit;border:0;border-radius:999px;padding:14px 23px;cursor:pointer;font-weight:700;transition:transform .2s,box-shadow .2s;touch-action:manipulation}button:focus-visible{outline:3px solid #7b2bff;outline-offset:3px}button:hover{transform:translateY(-2px)}.primary{background:var(--pink);color:#fff;box-shadow:0 8px 20px #ef5b9155}.secondary{background:#ffe0ec;color:var(--dark)}.buttons{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:24px;min-height:70px}#noBtn{position:relative}.muted{font-size:.87rem;color:#98677f}.answers{display:grid;gap:10px;margin:22px 0}.answer{background:#fff0f6;color:#7b3152;border:2px solid #f8d4e3;border-radius:16px;text-align:left;width:100%;padding:14px 16px}.answer:hover{background:#ffe0ed}.progress{height:8px;border-radius:20px;background:#ffe0ed;overflow:hidden;margin:15px 0}.progress>div{height:100%;background:var(--pink);transition:width .3s}.letter{background:#fffaf3;border:1px dashed #efadc5;border-radius:18px;padding:20px;text-align:left;margin:20px 0;white-space:pre-line;line-height:1.85}.heart{position:fixed;pointer-events:none;z-index:5;animation:floatUp 3.2s linear forwards}@keyframes floatUp{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(-105vh) rotate(35deg)}}.hidden{display:none!important}.score{font-size:2.7rem;color:var(--pink);font-weight:800}.footer{margin-top:24px;font-size:.8rem;color:#a36b85}@media(max-width:390px){.panel{padding:25px 16px}.buttons{gap:8px}button{padding:13px 18px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body><main><div class="panel">
+<section class="screen active" id="welcome"><div class="eyebrow">Made just for you ♡</div><span class="mascot" aria-hidden="true">🧸💗</span><h1>Hey, Pretty Girl!</h1><p>Someone made you a tiny corner of the internet. It's a little silly, a little romantic, and 100% yours. 🥹</p><button class="primary" onclick="show('game')">Open Your Surprise 💌</button><p class="footer">Warning: excessive cuteness ahead</p></section>
+<section class="screen" id="game"><div class="eyebrow">Level 1 · Serious question</div><span class="mascot" aria-hidden="true">🐻</span><h2>Do you love me? 🥺</h2><p>Choose carefully. This website has opinions.</p><div class="buttons"><button class="primary" onclick="winGame()">YES, OBVIOUSLY! 💖</button><button class="secondary" id="noBtn" onclick="dodgeNo()" onpointerenter="dodgeNo()">No 🙄</button></div><p class="muted" id="tease" aria-live="polite">Go on, answer honestly... 👀</p></section>
+<section class="screen" id="quiz"><div class="eyebrow">Level 2 · The love test</div><h2>A Little Quiz About Us 💕</h2><div class="progress"><div id="bar"></div></div><p class="muted" id="count"></p><h3 id="question"></h3><div class="answers" id="answers"></div><p class="muted" id="feedback" aria-live="polite"></p><button class="primary hidden" id="next" onclick="nextQuestion()">Next question →</button></section>
+<section class="screen" id="results"><span class="mascot">🏆💘</span><h2>You Finished Our Love Quiz!</h2><div class="score" id="score"></div><p id="scoreText"></p><p>No matter what you picked, you already have my whole heart. (Yes, cheesy. Deal with it.) 😂</p><button class="primary" onclick="show('letterScreen')">Unlock Secret Letter 💌</button></section>
+<section class="screen" id="letterScreen"><div class="eyebrow">Level 3 · From my heart</div><span class="mascot">💌</span><h2>A Letter Just for You</h2><div class="letter" id="letter"></div><button class="primary" onclick="finish()">One Last Surprise ✨</button></section>
+<section class="screen" id="final"><span class="mascot">🥰💖</span><h1>You're My Favorite Person!</h1><p>Out of all the people in the world, I'm so happy our paths crossed. Thank you for the laughs, the little moments, and for being you.</p><h2>Sending you 1,000 virtual kisses! 😘</h2><button class="primary" onclick="hearts(32)">More kisses please 💋</button><div style="height:12px"></div><button class="secondary" onclick="restart()">Play Again ↻</button><p class="footer">Forever your biggest fan ♡</p></section>
+</div></main>
+<script>
+// PERSONALIZE THESE DETAILS BEFORE SHARING!
+const girlfriendName = 'Pretty Girl';
+const boyfriendName = 'Your Thatta Bonikka';
+const loveLetter = `My sweetest ${girlfriendName},\n\nI made this little website because a normal “I love you” text just wasn't enough today. You make ordinary days feel special, and somehow you still make me smile even when you're teasing me. 😂\n\nI love our laughs, our silly conversations, and all the little memories we're making. We won't have perfect days every day, but I want us to keep choosing kindness, honesty, and each other.\n\nThank you for being part of my world. I hope this silly little surprise made you smile. You deserve so many reasons to be happy. ❤️\n\nWith all my love,\n${boyfriendName} 💗`;
+// Every answer is valid! Each completed question earns one love point.
+const questions = [
+ {q:'Who is most loving person? 💗',a:['You','Me','Both of us!'],reactions:[
+  'Me? Awww! 🥹 But you make it so easy to love you! 💗',
+  'YOU?! Okay, I see someone is claiming the love championship! 😂🏆',
+  'Exactly! We are both ridiculously in love. Team us forever! 💞']},
+ {q:"If I were sitting right next to you now, what would be the first thing you'd want to do with me? 🥰",a:['Hugging','Kissing','Us time'],reactions:[
+  'A giant hug? 🧸💗 Warning: I might never let go!',
+  'Ohooo! Someone wants kisses! 😘💋 Come here then!',
+  'Us time? 🥹❤️ Just you and me, making more sweet memories.']},
+ {q:'Who miss the other person more? 🥺',a:['You','Me',"It's tie!"],reactions:[
+  'Me? Guilty as charged! I miss you like crazy. 🥺💕',
+  'You miss me more? Awww baby, sending emergency cuddles! 🧸💌',
+  'A tie! 😂 Both of us need a hug right now! 💞']},
+ {q:'What is the most favourite thing about us? ❤️',a:['Our laughs','Our memories','Everything'],reactions:[
+  'Our laughs! 😂 Even our silliest jokes are my favorite.',
+  'Our memories! 📸 And we have so many more to make together. 💗',
+  'EVERYTHING?! 🥹💖 That is the sweetest answer ever!']},
+ {q:'Do I still give you butterflies? 🦋',a:['Yes','No','Absolutely yes!!!'],reactions:[
+  'YES?! 🦋💗 My heart just did a tiny happy dance!',
+  'No? 😂 Okay, I am officially planning more surprise kisses! 💋',
+  'ABSOLUTELY YES!!! 🦋💘 You still give me butterflies too, baby!']}
+];
+let current=0,points=0,answered=false,dodges=0;
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function dodgeNo(){const b=document.getElementById('noBtn');dodges++;const x=Math.round((Math.random()-.5)*110),y=Math.round((Math.random()-.5)*85);b.style.transform=`translate(${x}px,${y}px) rotate(${(Math.random()-.5)*20}deg)`;document.getElementById('tease').textContent=['Nice try! 😂','Oops, button is shy! 🙈','Are you suuuure? 🥺','The NO button has resigned. 💅'][dodges%4]}
+function winGame(){hearts(24);current=0;points=0;renderQuestion();show('quiz')}
+function renderQuestion(){answered=false;const q=questions[current];document.getElementById('count').textContent=`Question ${current+1} of ${questions.length}`;document.getElementById('bar').style.width=`${(current/questions.length)*100}%`;document.getElementById('question').textContent=q.q;document.getElementById('feedback').textContent='';document.getElementById('next').classList.add('hidden');const area=document.getElementById('answers');area.replaceChildren();q.a.forEach((answer,i)=>{const b=document.createElement('button');b.className='answer';b.textContent=answer;b.onclick=()=>choose(i);area.appendChild(b)})}
+function choose(i){if(answered)return;answered=true;const q=questions[current];points++;document.querySelectorAll('.answer').forEach(b=>b.disabled=true);document.getElementById('feedback').textContent=q.reactions[i];hearts(8);document.getElementById('next').classList.remove('hidden');document.getElementById('next').textContent=current===questions.length-1?'See my results 💗':'Next question →';document.getElementById('bar').style.width=`${((current+1)/questions.length)*100}%`}
+function nextQuestion(){current++;if(current<questions.length){renderQuestion()}else{document.getElementById('score').textContent=`${points} / ${questions.length}`;document.getElementById('scoreText').textContent='Perfect Love Score! 🥹💘 Every answer counts because it came from your heart.';show('results');hearts(18)}}
+document.getElementById('letter').textContent=loveLetter;
+function finish(){show('final');hearts(45)}
+function hearts(n){const icons=['💗','💖','💕','💘','✨','😘'];for(let i=0;i<n;i++){setTimeout(()=>{const el=document.createElement('span');el.className='heart';el.textContent=icons[Math.floor(Math.random()*icons.length)];el.style.left=Math.random()*95+'vw';el.style.bottom='-45px';el.style.fontSize=(16+Math.random()*22)+'px';el.style.animationDuration=(2.4+Math.random()*1.8)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),4500)},i*65)}}
+function restart(){current=0;points=0;dodges=0;document.getElementById('noBtn').style.transform='';document.getElementById('tease').textContent='Go on, answer honestly... 👀';show('welcome')}
+</script></body></html>
